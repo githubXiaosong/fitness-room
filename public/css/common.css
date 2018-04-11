@@ -1,0 +1,9 @@
+.error-input{
+    border: 1px solid red;
+}
+.error-text{
+    color: red;
+}
+.img-square{
+    height: 100px ;width: 100px;
+}
