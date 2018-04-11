@@ -405,6 +405,7 @@ class ServiceController extends Controller
         return back()->with('suc_msg', '添加成功');
     }
 
+    //测试
     public function editProduct(Request $request)
     {
 
