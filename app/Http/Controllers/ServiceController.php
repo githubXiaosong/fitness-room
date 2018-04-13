@@ -92,13 +92,13 @@ class ServiceController extends Controller
     public function roomList()
     {
 
-        return Room::where(['status' => STATUS_NORMAL])->with(['courses'])->get();
+        return suc(Room::where(['status' => STATUS_NORMAL])->with(['courses'])->get());
 
     }
 
     public function productList()
     {
-        return Product::where(['status' => STATUS_NORMAL])->get();
+        return suc(Product::where(['status' => STATUS_NORMAL])->get());
     }
 
 
@@ -137,7 +137,7 @@ class ServiceController extends Controller
             }
         }
 
-        return $room;
+        return suc($room);
     }
 
     /**
@@ -164,7 +164,8 @@ class ServiceController extends Controller
             $course->room = Course::with(['room'])->find($course->id)->room;
         }
 
-        return view('my-course')->with(['user' => $user]);
+
+        return suc($user);
     }
 
 
