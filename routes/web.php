@@ -35,8 +35,21 @@ Route::group(['middleware' => 'web'], function () {
 
 
     Route::group(['prefix' => 'api'], function () {
-        Route::post('/orderCourse','ServiceController@orderCourse');
+        Route::post('/orderCourse', 'ServiceController@orderCourse');
+
+        //APP
+        /**
+         * 页面改APP接口步骤  1替换URL中传递参数的方式
+         *                  2把其中用到AUTH的方法换为user_id
+         */
+        Route::get('/login', 'ServiceController@login');;
+        Route::get('/roomList', 'ServiceController@roomList');;
+        Route::get('/courseList', 'ServiceController@courseList');
+        Route::get('/myCourse', 'ServiceController@myCourse');
+        Route::get('/productList', 'ServiceController@productList');
+
     });
+
 
     Route::group(['prefix' => 'admin'], function () {
         Route::get('/index', 'Admin\PageController@index');
@@ -62,24 +75,24 @@ Route::group(['middleware' => 'web'], function () {
 
 
         Route::group(['prefix' => 'api'], function () {
-            Route::post('/addUser','Admin\ServiceController@addUser');
-            Route::post('/editUser','Admin\ServiceController@editUser');
-            Route::post('/changeUserStatus','Admin\ServiceController@changeUserStatus');
-            Route::post('/deleteUser','Admin\ServiceController@deleteUser');
+            Route::post('/addUser', 'Admin\ServiceController@addUser');
+            Route::post('/editUser', 'Admin\ServiceController@editUser');
+            Route::post('/changeUserStatus', 'Admin\ServiceController@changeUserStatus');
+            Route::post('/deleteUser', 'Admin\ServiceController@deleteUser');
 
-            Route::post('/addRoom','Admin\ServiceController@addRoom');
-            Route::post('/editRoom','Admin\ServiceController@editRoom');
-            Route::post('/changeRoomStatus','Admin\ServiceController@changeRoomStatus');
-            Route::post('/deleteRoom','Admin\ServiceController@deleteRoom');
+            Route::post('/addRoom', 'Admin\ServiceController@addRoom');
+            Route::post('/editRoom', 'Admin\ServiceController@editRoom');
+            Route::post('/changeRoomStatus', 'Admin\ServiceController@changeRoomStatus');
+            Route::post('/deleteRoom', 'Admin\ServiceController@deleteRoom');
 
-            Route::post('/addCourse','Admin\ServiceController@addCourse');
-            Route::post('/editCourse','Admin\ServiceController@editCourse');
-            Route::post('/deleteCourse','Admin\ServiceController@deleteCourse');
+            Route::post('/addCourse', 'Admin\ServiceController@addCourse');
+            Route::post('/editCourse', 'Admin\ServiceController@editCourse');
+            Route::post('/deleteCourse', 'Admin\ServiceController@deleteCourse');
 
-            Route::post('/addProduct','Admin\ServiceController@addProduct');
-            Route::post('/editProduct','Admin\ServiceController@editProduct');
-            Route::post('/changeProductStatus','Admin\ServiceController@changeProductStatus');
-            Route::post('/deleteProduct','Admin\ServiceController@deleteProduct');
+            Route::post('/addProduct', 'Admin\ServiceController@addProduct');
+            Route::post('/editProduct', 'Admin\ServiceController@editProduct');
+            Route::post('/changeProductStatus', 'Admin\ServiceController@changeProductStatus');
+            Route::post('/deleteProduct', 'Admin\ServiceController@deleteProduct');
         });
     });
 });

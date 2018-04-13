@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Course;
+use App\Product;
+use App\Room;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -51,4 +54,118 @@ class ServiceController extends Controller
 
         return back()->with('suc_msg', '操作成功');
     }
+
+
+    //APP
+
+    /**
+     * @return array
+     * email
+     * password
+     */
+    public function login()
+    {
+
+        $validator = Validator::make(
+            rq(),
+            [
+                'email' => 'required|exists:users,email',
+                'password' => 'required',
+            ],
+            [
+            ]
+        );
+        if ($validator->fails())
+            return $validator->messages();
+
+        $email = rq('email');
+        $password = rq('password');
+
+        if (Auth::attempt(['email' => $email, 'password' => $password])) {
+            // Authentication passed...
+            return suc(User::where(['email'=>$email])->first());
+        }
+
+        return err(-1);
+    }
+
+    public function roomList()
+    {
+
+        return Room::where(['status' => STATUS_NORMAL])->with(['courses'])->get();
+
+    }
+
+    public function productList()
+    {
+        return Product::where(['status' => STATUS_NORMAL])->get();
+    }
+
+
+    /**
+     * @return $this
+     * room_id
+     * user_id
+     */
+    public function courseList()
+    {
+
+        $validator = Validator::make(
+            rq(),
+            [
+                'room_id' => 'required|exists:rooms,id',
+                'user_id' => 'required|exists:users,id',
+            ],
+            [
+            ]
+        );
+        if ($validator->fails())
+            return $validator->messages();
+
+        $room = Room::with(['courses'])->find(rq('room_id'));
+
+        $user_id = rq('user_id');
+        foreach ($room->courses as $course) {
+            $course->users = Course::with(['users'])->find($course->id)->users;
+            $course->is_ordered = false;
+            foreach ($course->users as $user) {
+
+                if ($user->id == $user_id) {
+                    $course->is_ordered = true;
+                    break;
+                }
+            }
+        }
+
+        return $room;
+    }
+
+    /**
+     * @return $this
+     * user_id
+     */
+    public function myCourse()
+    {
+
+        $validator = Validator::make(
+            rq(),
+            [
+                'user_id' => 'required|exists:users,id',
+            ],
+            [
+            ]
+        );
+        if ($validator->fails())
+            return $validator->messages();
+
+        $user = User::with(['courses'])->find(rq('user_id'));
+
+        foreach ($user->courses as $course) {
+            $course->room = Course::with(['room'])->find($course->id)->room;
+        }
+
+        return view('my-course')->with(['user' => $user]);
+    }
+
+
 }
