@@ -1,0 +1,46 @@
+1(登录)
+fitness.xiaosong1234.cn/api/login
+输入参数
+	eamil		邮箱
+	password 	密码
+返回参数
+	成功 	status:0
+			data:用户json对象
+	失败	status:-1 	
+
+2(健身房列表)
+fitness.xiaosong1234.cn/api/roomList
+输入参数
+	无
+返回参数
+	成功 	status:0
+			data:用户json对象
+	失败	无
+
+3(课程列表)
+fitness.xiaosong1234.cn/api/courseList
+输入参数
+	room_id		健身房ID
+	user_id 	登录的用户ID
+返回参数
+	成功 	status:0
+			data:用户json对象
+	失败	无	
+
+4(我参加的课程)
+fitness.xiaosong1234.cn/api/myCourse
+输入参数
+	user_id 	登录的用户ID
+返回参数
+	成功 	status:0
+			data:用户json对象(之中包含课程信息)
+	失败	无		
+
+5(出售的器材列表)
+fitness.xiaosong1234.cn/api/productList
+输入参数
+	无
+返回参数
+	成功 	status:0
+			data:用户json对象
+	失败	无

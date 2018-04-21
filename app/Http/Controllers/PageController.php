@@ -15,6 +15,12 @@ class PageController extends Controller
 {
     //
 
+    public function roomList()
+    {
+        $rooms = Room::where(['status'=>STATUS_NORMAL])->with(['courses'])->get();
+        return view('room-list')->with(['rooms' => $rooms]);
+    }
+
     public function productList()
     {
         $products = Product::where(['status' => STATUS_NORMAL])->get();

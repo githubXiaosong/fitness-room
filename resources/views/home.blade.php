@@ -53,42 +53,49 @@
 
         <div class="panel panel-default">
             <div class="page-header">
-                <h3 style="padding-left: 20px">健身房列表
-                    <small> 共{{ count($rooms) }}条 </small>
+                <h3 style="padding-left: 20px">新闻
 
                 </h3>
             </div>
 
             <div class="panel-body">
 
-                @foreach($rooms as $room)
-                    <div class="col-sm-6 col-md-3">
-                        <div class="thumbnail">
-                            <img style="" src="{{ '/storage/'.$room->cover_uri }}" alt="...">
+                <div class="media">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object" src="{{ url('storage/images/news.jpg') }}" alt="...">
+                        </a>
 
-                            <div class="caption">
-
-                                <div>
-                                    <h3 class="pull-left">{{ $room->title }}</h3>
-
-                                    <h3 class="pull-right" style="font-size: 15px">{{ $room->current_num }}人</h3>
-
-                                    <div style="clear: both;"></div>
-                                </div>
-
-
-                                <p><strong>地址:</strong>{{ $room->location }}</p>
-
-                                <p><strong>器材简介:</strong>{{ $room->equipment_desc }}</p>
-
-                                <p>
-                                    <a href="{{ url('courseList/'.$room->id) }}" class="btn btn-primary" role="button">约课</a>
-                                    <a href="#" class="btn btn-default" role="button">办卡</a>
-                                </p>
-                            </div>
-                        </div>
                     </div>
-                @endforeach
+                    <div class="media-body">
+                        <h4 class="media-heading">新闻1</h4>
+                        描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述
+                    </div>
+                </div>
+                <div class="media">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object" src="{{ url('storage/images/news.jpg') }}" alt="...">
+                        </a>
+
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">新闻2</h4>
+                        描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述
+                    </div>
+                </div>
+                <div class="media">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object" src="{{ url('storage/images/news.jpg') }}" alt="...">
+                        </a>
+
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">新闻3</h4>
+                        描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述
+                    </div>
+                </div>
 
             </div>
         </div>

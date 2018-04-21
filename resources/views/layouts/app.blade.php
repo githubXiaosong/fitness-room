@@ -52,8 +52,11 @@
                 <li class="{{ \Illuminate\Support\Facades\Request::is('home') ? 'active' : '' }}"><a
                             href="{{ url('/home') }}" role="presentation">首页</a>
                 </li>
+                <li class="{{ \Illuminate\Support\Facades\Request::is('roomList') ? 'active' : '' }}"><a
+                            href="{{ url('/roomList') }}" role="presentation">课程列表</a>
+                </li>
                 <li class="{{ \Illuminate\Support\Facades\Request::is('courseList/*') ? 'active' : '' }}"><a
-                            role="presentation">约课</a>
+                            href="{{ url('/roomList') }}" role="presentation">约课</a>
                 </li>
                 <li class="{{ \Illuminate\Support\Facades\Request::is('myCourse') ? 'active' : '' }}"><a
                             href="{{ url('/myCourse') }}" role="presentation">我的课程</a>

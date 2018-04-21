@@ -29,6 +29,7 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('/', 'HomeController@index')->middleware('auth');
     Route::get('/home', 'HomeController@index')->middleware('auth');
+    Route::get('/roomList', 'PageController@roomList')->middleware('auth');
     Route::get('/courseList/{room_id}', 'PageController@courseList')->middleware('auth');
     Route::get('/myCourse', 'PageController@myCourse')->middleware('auth');
     Route::get('/productList', 'PageController@productList');
