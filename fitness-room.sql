@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2018-04-11 12:29:51
+Date: 2018-04-23 12:02:50
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -35,7 +35,6 @@ CREATE TABLE `courses` (
 -- ----------------------------
 -- Records of courses
 -- ----------------------------
-INSERT INTO `courses` VALUES ('3', '第一个课程', '第一个课程的描述', '2', '2018-04-08 20:30:06', '2018-04-08 12:30:07', '2018-04-08 12:30:07');
 INSERT INTO `courses` VALUES ('7', '第二个健身房', '健身房健身房健身房健身房', '2', '2018-04-11 00:08:16', '2018-04-10 16:08:18', '2018-04-10 16:08:18');
 INSERT INTO `courses` VALUES ('8', '第三个课程', '健身房健身房健身房健身房', '5', '2018-04-11 00:08:38', '2018-04-10 16:08:40', '2018-04-10 16:08:40');
 INSERT INTO `courses` VALUES ('9', '第四个课程', '健身房健身房健身房', '2', '2018-04-11 00:08:52', '2018-04-10 16:08:54', '2018-04-10 16:08:54');
@@ -54,14 +53,13 @@ CREATE TABLE `course_user` (
   KEY `2` (`course_id`),
   CONSTRAINT `1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   CONSTRAINT `2` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of course_user
 -- ----------------------------
-INSERT INTO `course_user` VALUES ('25', '5', '3');
-INSERT INTO `course_user` VALUES ('28', '5', '10');
-INSERT INTO `course_user` VALUES ('30', '5', '9');
+INSERT INTO `course_user` VALUES ('1', '4', '7');
+INSERT INTO `course_user` VALUES ('2', '4', '9');
 
 -- ----------------------------
 -- Table structure for `migrations`
@@ -77,6 +75,28 @@ CREATE TABLE `migrations` (
 -- ----------------------------
 INSERT INTO `migrations` VALUES ('2014_10_12_000000_create_users_table', '1');
 INSERT INTO `migrations` VALUES ('2014_10_12_100000_create_password_resets_table', '1');
+
+-- ----------------------------
+-- Table structure for `news`
+-- ----------------------------
+DROP TABLE IF EXISTS `news`;
+CREATE TABLE `news` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `cover_uri` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '0',
+  `desc` varchar(255) NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of news
+-- ----------------------------
+INSERT INTO `news` VALUES ('1', 'images/news.jpg', '第一天新闻', '1', '描述描述描述描述', '2018-04-22 14:38:11', '0000-00-00 00:00:00');
+INSERT INTO `news` VALUES ('2', 'images/d406d4ede34e2bb93a643427c1cbe8e6.jpeg', '第二条新闻', '0', '描述描述描述', '2018-04-22 14:37:49', '2018-04-22 14:37:49');
+INSERT INTO `news` VALUES ('3', 'images/d406d4ede34e2bb93a643427c1cbe8e6.jpeg', '第二条新闻', '0', '描述描述描述', '2018-04-22 14:38:05', '2018-04-22 14:38:05');
 
 -- ----------------------------
 -- Table structure for `password_resets`
@@ -108,13 +128,14 @@ CREATE TABLE `products` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of products
 -- ----------------------------
 INSERT INTO `products` VALUES ('2', 'hahah', 'images/da9bd6a1474ac425f35acc8cc2ca5283.jpeg', '3', 'https://detail.tmall.com/item.htm?spm=a3211.0-5931653.userDefinedPic_1479714772816_11.1.62bf1f74zNO3s2&id=534569307104&rn=692817cf4c67933780a29fa21cf8460c&abbucket=19&scene=taobao_shop&gccpm=7569784.600.2.subject-1108&sta=gccpm:7569784.600.2.subject-1108&track_params={%22gccpm%22:%227569784.600.2.subject-1108%22}', '0', '2018-04-10 04:43:12', '2018-04-10 16:10:04');
 INSERT INTO `products` VALUES ('3', '好', 'images/41429428ef91b41894a07e300ccc4452.jpeg', '24', 'https://detail.tmall.com/item.htm?spm=a3211.0-5931653.userDefinedPic_1479714772816_11.1.62bf1f74zNO3s2&id=534569307104&rn=692817cf4c67933780a29fa21cf8460c&abbucket=19&scene=taobao_shop&gccpm=7569784.600.2.subject-1108&sta=gccpm:7569784.600.2.subject-1108&track_params={%22gccpm%22:%227569784.600.2.subject-1108%22}', '0', '2018-04-10 06:28:16', '2018-04-10 06:28:16');
+INSERT INTO `products` VALUES ('4', 'asdasd', 'images/e840e19829a1b6b2db8f3adac2efff94.jpeg', '15', 'http://www.xitongcheng.com/jiaocheng/atrrvyd.html', '0', '2018-04-13 07:11:26', '2018-04-13 07:11:26');
 
 -- ----------------------------
 -- Table structure for `rooms`
@@ -136,7 +157,7 @@ CREATE TABLE `rooms` (
 -- ----------------------------
 -- Records of rooms
 -- ----------------------------
-INSERT INTO `rooms` VALUES ('2', '第一健身房', 'images/c336c2a0605c1d27e51e040ab5616387.jpeg', '0', '中华大街和平路交叉', '好多好多', '0', '2018-04-08 04:32:58', '2018-04-10 16:07:34');
+INSERT INTO `rooms` VALUES ('2', '第一健身房', 'images/41429428ef91b41894a07e300ccc4452.jpeg', '0', '中华大街和平路交叉', '好多好多', '0', '2018-04-08 04:32:58', '2018-04-13 07:10:31');
 INSERT INTO `rooms` VALUES ('5', '第二健身房', 'images/efe2c346939b94e77235625f94b8d6de.jpeg', '0', '和平路20号', '器材器材器材器材', '0', '2018-04-10 16:05:44', '2018-04-10 16:05:44');
 INSERT INTO `rooms` VALUES ('6', '第三健身房', 'images/cbc6d7e8ee9c60cb6c8c8befe4990f26.jpeg', '0', '柏林南路30号', '器材器材器材器材', '0', '2018-04-10 16:06:18', '2018-04-10 16:06:18');
 INSERT INTO `rooms` VALUES ('7', '第四健身房', 'images/326fdf2f1c3288cec2889361c01f6146.jpeg', '0', '裕翔街10号', '器材器材器材器材', '0', '2018-04-10 16:06:45', '2018-04-10 16:06:45');
@@ -158,10 +179,10 @@ CREATE TABLE `users` (
   `status` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('4', '13081114776', '小松', '109803058@qq.com', '$2y$10$YdzcJyk2ZGWhELx5r7bBDeZQ4ejUkss.fHv4cbDpSsgro/t2a7y0.', null, '2018-04-07 13:57:45', '2018-04-09 05:01:39', '0');
-INSERT INTO `users` VALUES ('5', '13081114886', '小松', '1098030258@qq.com', '$2y$10$iFH.MSs/G8SVbrX4L5/wOuMcO.L6mFojzkR5Zi/fI5UUhr5sZqnCW', null, '2018-04-07 15:16:32', '2018-04-08 06:34:57', '0');
+INSERT INTO `users` VALUES ('4', '13081114776', '小松', '109803058@qq.com', '$2y$10$YdzcJyk2ZGWhELx5r7bBDeZQ4ejUkss.fHv4cbDpSsgro/t2a7y0.', null, '2018-04-07 13:57:45', '2018-04-13 07:10:05', '1');
+INSERT INTO `users` VALUES ('6', '12341231242', 'xiaosong', '123132@qq.com', '$2y$10$b2/JGDC8umyWbepRG65VaOQW0mHv87oFhyrTN4wfqaSiNlWwHmIta', null, '2018-04-13 07:09:58', '2018-04-13 07:09:58', '0');

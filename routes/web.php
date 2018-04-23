@@ -48,6 +48,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('/courseList', 'ServiceController@courseList');
         Route::get('/myCourse', 'ServiceController@myCourse');
         Route::get('/productList', 'ServiceController@productList');
+        Route::get('/AppOrderCourse', 'ServiceController@AppOrderCourse');
 
     });
 

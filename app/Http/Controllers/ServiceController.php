@@ -169,4 +169,53 @@ class ServiceController extends Controller
     }
 
 
+    /**
+     * @param Request $request
+     * @return $this|\Illuminate\Http\RedirectResponse 移动端约课
+     */
+    public function AppOrderCourse(Request $request)
+    {
+
+        $validator = Validator::make(
+            rq(),
+            [
+                'course_id' => 'required|exists:courses,id',
+                'user_id' => 'required|exists:users,id'
+            ],
+            [
+            ]
+        );
+        if ($validator->fails())
+            return $validator->messages();
+
+        $id = rq('user_id');
+
+        $course = Course::find(rq('course_id'));
+
+
+        $items = $course
+            ->users()
+            ->newPivotStatement()
+//            从这里开始就进入了另一个数据模型了    进入的是那个中间的数据模型   就是轴模型 对应轴表
+            ->where('user_id', $id)
+            ->where('course_id', $course->id)->get();
+
+
+        if (empty(json_decode($items)))
+            $course->users()->attach($id);
+        else
+            $course
+                ->users()
+                ->newPivotStatement()
+//            从这里开始就进入了另一个数据模型了    进入的是那个中间的数据模型   就是轴模型 对应轴表
+                ->where('user_id', $id)
+                ->where('course_id', $course->id)->delete();
+
+
+        return suc();
+    }
+
+
+
+
 }
