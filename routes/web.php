@@ -65,6 +65,9 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('/roomEdit/{room_id}', 'Admin\PageController@roomEdit');
         Route::get('/roomList', 'Admin\PageController@roomList');
 
+        Route::get('/newsAdd', 'Admin\PageController@newsAdd');
+        Route::get('/newsList', 'Admin\PageController@newsList');
+
         Route::get('/courseAdd', 'Admin\PageController@courseAdd');
         Route::get('/courseEdit/{course_id}', 'Admin\PageController@courseEdit');
         Route::get('/courseList', 'Admin\PageController@courseList');
@@ -94,6 +97,10 @@ Route::group(['middleware' => 'web'], function () {
             Route::post('/editProduct', 'Admin\ServiceController@editProduct');
             Route::post('/changeProductStatus', 'Admin\ServiceController@changeProductStatus');
             Route::post('/deleteProduct', 'Admin\ServiceController@deleteProduct');
+
+            Route::post('/addNews', 'Admin\ServiceController@addNews');
+            Route::post('/changeNewsStatus', 'Admin\ServiceController@changeNewsStatus');
+            Route::post('/deleteNews', 'Admin\ServiceController@deleteNews');
         });
     });
 });

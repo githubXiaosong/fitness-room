@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Clouthes;
 use App\Course;
 use App\Http\Controllers\Controller;
+use App\News;
 use App\Product;
 use App\Room;
 use App\User;
@@ -107,6 +108,18 @@ class PageController extends Controller
         $product = Product::find($id);
         return view('admin.product-edit')->with(['product' => $product]);
     }
+
+    public function newsList()
+    {
+        $news = News::get();
+        return view('admin.news-list')->with(['news' => $news]);
+    }
+
+    public function newsAdd()
+    {
+        return view('admin.news-add');
+    }
+
 
 
 }

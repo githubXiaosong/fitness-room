@@ -60,42 +60,23 @@
 
             <div class="panel-body">
 
-                <div class="media">
-                    <div class="media-left">
-                        <a href="#">
-                            <img class="media-object" src="{{ url('storage/images/news.jpg') }}" alt="...">
-                        </a>
 
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">新闻1</h4>
-                        描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述
-                    </div>
-                </div>
-                <div class="media">
-                    <div class="media-left">
-                        <a href="#">
-                            <img class="media-object" src="{{ url('storage/images/news.jpg') }}" alt="...">
-                        </a>
+                @foreach($news as $item)
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="#">
+                                <img class="media-object" src="{{ '/storage/'.$item->cover_uri }}" alt="...">
+                            </a>
 
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">{{ $item->title }}</h4>
+                           {{ $item->desc }}
+                            <br>
+                            <p style="margin-top: 25px">{{ $item->created_at }}</p>
+                        </div>
                     </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">新闻2</h4>
-                        描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述
-                    </div>
-                </div>
-                <div class="media">
-                    <div class="media-left">
-                        <a href="#">
-                            <img class="media-object" src="{{ url('storage/images/news.jpg') }}" alt="...">
-                        </a>
-
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">新闻3</h4>
-                        描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述
-                    </div>
-                </div>
+                @endforeach
 
             </div>
         </div>

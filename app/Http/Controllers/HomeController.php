@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Room;
+use App\News;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -25,7 +26,8 @@ class HomeController extends Controller
     public function index()
     {
 
-        $roooms = Room::where(['status'=>STATUS_NORMAL])->with(['courses'])->get();
-        return view('home')->with(['rooms' => $roooms]);
+        $news = News::where(['status'=>STATUS_NORMAL])->get();
+        $rooms = Room::where(['status'=>STATUS_NORMAL])->with(['courses'])->get();
+        return view('home')->with(['rooms' => $rooms,'news' => $news]);
     }
 }

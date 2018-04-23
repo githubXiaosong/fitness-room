@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Clouthes;
 use App\Course;
 use App\Http\Controllers\Controller;
+use App\News;
 use App\Product;
 use App\Room;
 use App\User;
@@ -491,6 +492,85 @@ class ServiceController extends Controller
             return back()->withErrors($validator->messages());
 
         Product::find(rq('product_id'))->delete();
+
+        return back()->with('suc_msg', '删除成功');
+    }
+
+    //
+    public function addNews(Request $request)
+    {
+
+        $validator = Validator::make(
+            rq(),
+            [
+                'title' => 'required|max:255',
+                'desc' => 'required|max:255',
+                'cover' => 'required|image'
+            ],
+            [
+                'title.required' => '标题不存在',
+                'title.max' => '标题的最大长度不能超过255',
+                'cover.required' => '封面图片不存在',
+                'cover.image' => '封面必须为图片类型'
+            ]
+        );
+        if ($validator->fails())
+            return back()->withErrors($validator->messages());
+
+        $news = new News();
+        $news->title = rq('title');
+        $news->desc = rq('desc');
+        $cover_path = $request->cover->store('images', 'public');
+        $news->cover_uri = $cover_path;
+        $news->save();
+
+        return back()->with('suc_msg', '添加成功');
+    }
+
+    public function changeNewsStatus()
+    {
+
+        $validator = Validator::make(
+            rq(),
+            [
+                'news_id' => 'required|exists:news,id',
+
+            ],
+            [
+                'news_id.required' => '产品ID不存在',
+                'news_id.exists' => '产品ID查找不到'
+
+            ]
+        );
+        if ($validator->fails())
+            return back()->withErrors($validator->messages());
+
+
+        $news = News::find(rq('news_id'));
+        $news->status = $news->status == 0 ? '1' : '0';
+        $news->save();
+
+        return back()->with('suc_msg', '修改成功');
+
+    }
+
+    public function deleteNews()
+    {
+
+        $validator = Validator::make(
+            rq(),
+            [
+                'news_id' => 'required|exists:news,id'
+            ],
+            [
+                'news_id.required' => '产品ID不存在',
+                'news_id.exists' => '产品ID查找不到'
+            ]
+        );
+        if ($validator->fails())
+            return back()->withErrors($validator->messages());
+
+        News::find(rq('news_id'))->delete();
 
         return back()->with('suc_msg', '删除成功');
     }
