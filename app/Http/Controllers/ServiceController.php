@@ -55,6 +55,47 @@ class ServiceController extends Controller
         return back()->with('suc_msg', '操作成功');
     }
 
+    public function makeCard(Request $request)
+    {
+
+        $validator = Validator::make(
+            rq(),
+            [
+                'room_id' => 'required|exists:rooms,id',
+            ],
+            [
+            ]
+        );
+        if ($validator->fails())
+            return back()->withErrors($validator->messages());
+
+        $user = Auth::user();
+
+        $room = Room::find(rq('room_id'));
+
+
+        $items = $room
+            ->users()
+            ->newPivotStatement()
+//            从这里开始就进入了另一个数据模型了    进入的是那个中间的数据模型   就是轴模型 对应轴表
+            ->where('user_id', $user->id)
+            ->where('room_id', $room->id)->get();
+
+
+        if (empty(json_decode($items)))
+            $room->users()->attach($user->id);
+        else
+            $room
+                ->users()
+                ->newPivotStatement()
+//            从这里开始就进入了另一个数据模型了    进入的是那个中间的数据模型   就是轴模型 对应轴表
+                ->where('user_id', $user->id)
+                ->where('room_id', $room->id)->delete();
+
+
+        return back()->with('suc_msg', '操作成功');
+    }
+
 
     //APP
 
@@ -192,14 +233,12 @@ class ServiceController extends Controller
 
         $course = Course::find(rq('course_id'));
 
-
         $items = $course
             ->users()
             ->newPivotStatement()
 //            从这里开始就进入了另一个数据模型了    进入的是那个中间的数据模型   就是轴模型 对应轴表
             ->where('user_id', $id)
             ->where('course_id', $course->id)->get();
-
 
         if (empty(json_decode($items)))
             $course->users()->attach($id);
@@ -210,7 +249,6 @@ class ServiceController extends Controller
 //            从这里开始就进入了另一个数据模型了    进入的是那个中间的数据模型   就是轴模型 对应轴表
                 ->where('user_id', $id)
                 ->where('course_id', $course->id)->delete();
-
 
         return suc();
     }

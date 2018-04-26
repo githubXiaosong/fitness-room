@@ -12,4 +12,9 @@ class Room extends Model
         return $this->hasMany('App\Course');
     }
 
+    public function users()
+    {
+        return $this->belongsToMany('App\User');
+    }
+
 }

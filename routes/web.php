@@ -37,6 +37,7 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::group(['prefix' => 'api'], function () {
         Route::post('/orderCourse', 'ServiceController@orderCourse');
+        Route::post('/makeCard', 'ServiceController@makeCard');
 
         //APP
         /**

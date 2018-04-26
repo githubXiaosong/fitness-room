@@ -31,4 +31,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Course');
     }
+
+    public function rooms()
+    {
+        return $this->belongsToMany('App\Room');
+    }
 }

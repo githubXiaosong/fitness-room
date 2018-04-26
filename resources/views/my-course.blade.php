@@ -13,6 +13,7 @@
 
             <div class="panel-body">
                 <table class="table">
+                    <h4>我的课程</h4>
                     <thead>
                     <tr>
                         <th>标题</th>
@@ -24,8 +25,8 @@
                         <th>操作</th>
                     </tr>
                     </thead>
-                    <tbody>
 
+                    <tbody>
 
                     @foreach($user->courses as $course)
                         <tr>
@@ -38,13 +39,32 @@
                             <td>
                                 <a href="#" class="btn btn-primary btn-xs" role="button"
                                    onclick="submit_as_form('{{url('/api/orderCourse')}}','course_id','{{ $course->id }}')">取消预约</a>
-
                             </td>
                         </tr>
                     @endforeach
-
                     </tbody>
+                </table>
 
+
+                <table class="table">
+                    <h4>我的VIP</h4>
+                    <thead>
+                    <tr>
+
+                        <th>健身房</th>
+                        <th>地址</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    @foreach($user->rooms as $room)
+                        <tr>
+                            <td>{{$room->title}}</td>
+                            <td>{{$room->location}}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
                 </table>
 
             </div>

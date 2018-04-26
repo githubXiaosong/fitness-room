@@ -59,7 +59,7 @@
                             href="{{ url('/roomList') }}" role="presentation">约课</a>
                 </li>
                 <li class="{{ \Illuminate\Support\Facades\Request::is('myCourse') ? 'active' : '' }}"><a
-                            href="{{ url('/myCourse') }}" role="presentation">我的课程</a>
+                            href="{{ url('/myCourse') }}" role="presentation">我的信息</a>
                 </li>
                 <li class="{{ \Illuminate\Support\Facades\Request::is('productList') ? 'active' : '' }}"><a
                             href="{{ url('/productList') }}" role="presentation">器材出售</a>

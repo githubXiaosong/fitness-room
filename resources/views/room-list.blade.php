@@ -6,7 +6,7 @@
         <div class="panel panel-default">
             <div class="page-header">
                 <h3 style="padding-left: 20px">健身房列表
-                    <small> 共{{ count($rooms) }}条 </small>
+                    <small> 共{{ count($rooms) }}条</small>
 
                 </h3>
             </div>
@@ -35,8 +35,12 @@
 
                                 <p>
                                     <a href="{{ url('courseList/'.$room->id) }}" class="btn btn-primary" role="button">约课</a>
-                                    <a href="#" class="btn btn-default" role="button">办卡</a>
+                                    <a onclick="submit_as_form('{{url('api/makeCard')}}','room_id','{{ $room->id }}')" class="btn btn-default" role="button" >
+                                        {{ $room->is_carded?'退卡':'办卡' }}
+                                    </a>
+
                                 </p>
+
                             </div>
                         </div>
                     </div>
@@ -46,4 +50,33 @@
         </div>
     </div>
 
+    <script>
+
+
+
+
+        //以表单形式提交参数
+        function submit_as_form(url, data_name, data_value) {
+            var form = '<form id="tmp_for_submit_form" method="post" action=" ' + url + ' " >' +
+                    '<input type="hidden" name="' + data_name + '" value=" ' + data_value + ' ">' +
+                    '{{ csrf_field() }}' +
+                    '</form>';
+            $('body').append(form);
+            $('#tmp_for_submit_form').submit();
+        }
+
+        @if (session('err_msg'))
+        Toast('{{ session('err_msg') }}', 2000);
+        @endif
+
+
+        @if (session('suc_msg'))
+        Toast('{{ session('suc_msg') }}', 2000);
+        @endif
+
+
+    </script>
+
+
 @endsection
+

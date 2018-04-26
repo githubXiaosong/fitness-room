@@ -17,7 +17,20 @@ class PageController extends Controller
 
     public function roomList()
     {
-        $rooms = Room::where(['status'=>STATUS_NORMAL])->with(['courses'])->get();
+        $rooms = Room::where(['status'=>STATUS_NORMAL])->with(['courses','users'])->get();
+
+        $auther = Auth::user();
+
+        foreach($rooms as $room){
+            $room->is_carded = false;
+            foreach($room->users as $user){
+                if($user->id = $auther->id){
+                    $room->is_carded = true;
+                    break;
+                }
+            }
+        }
+
         return view('room-list')->with(['rooms' => $rooms]);
     }
 
@@ -53,7 +66,7 @@ class PageController extends Controller
     {
         $user = Auth::user();
 
-        $user = User::with(['courses'])->find($user->id);
+        $user = User::with(['courses','rooms'])->find($user->id);
 
         foreach($user->courses as $course){
             $course->room = Course::with(['room'])->find($course->id)->room;
