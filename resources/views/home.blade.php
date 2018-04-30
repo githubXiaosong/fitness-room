@@ -17,21 +17,21 @@
             <div class="carousel-inner" style="position: relative; height: 500px; margin-bottom: 20px"
                  role="listbox">
                 <div class="item active">
-                    <img src="{{ url('/storage/images/clouthes2.jpg') }}" alt="...">
+                    <img src="{{ url('/storage/images/fitness_img1.jpg') }}" alt="...">
 
                     <div class="carousel-caption">
                         ...
                     </div>
                 </div>
                 <div class="item ">
-                    <img src="{{ url('/storage/images/clouthes3.jpg') }}" alt="...">
+                    <img src="{{ url('/storage/images/fitness_img2.jpg') }}" alt="...">
 
                     <div class="carousel-caption">
                         ...
                     </div>
                 </div>
                 <div class="item ">
-                    <img src="{{ url('/storage/images/clouthes4.jpg') }}" alt="...">
+                    <img src="{{ url('/storage/images/fitness_img3.jpg') }}" alt="...">
 
                     <div class="carousel-caption">
                         ...

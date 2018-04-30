@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2018-04-23 12:02:50
+Date: 2018-04-27 13:31:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -53,13 +53,14 @@ CREATE TABLE `course_user` (
   KEY `2` (`course_id`),
   CONSTRAINT `1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   CONSTRAINT `2` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of course_user
 -- ----------------------------
-INSERT INTO `course_user` VALUES ('1', '4', '7');
-INSERT INTO `course_user` VALUES ('2', '4', '9');
+INSERT INTO `course_user` VALUES ('5', '4', '7');
+INSERT INTO `course_user` VALUES ('6', '4', '8');
+INSERT INTO `course_user` VALUES ('7', '4', '10');
 
 -- ----------------------------
 -- Table structure for `migrations`
@@ -162,6 +163,27 @@ INSERT INTO `rooms` VALUES ('5', '第二健身房', 'images/efe2c346939b94e77235
 INSERT INTO `rooms` VALUES ('6', '第三健身房', 'images/cbc6d7e8ee9c60cb6c8c8befe4990f26.jpeg', '0', '柏林南路30号', '器材器材器材器材', '0', '2018-04-10 16:06:18', '2018-04-10 16:06:18');
 INSERT INTO `rooms` VALUES ('7', '第四健身房', 'images/326fdf2f1c3288cec2889361c01f6146.jpeg', '0', '裕翔街10号', '器材器材器材器材', '0', '2018-04-10 16:06:45', '2018-04-10 16:06:45');
 INSERT INTO `rooms` VALUES ('8', '第五健身房', 'images/b1bedfa4696015e34e1f6ebe6554890b.jpeg', '0', '建设大街122号', '器材器材器材器材器材', '0', '2018-04-10 16:07:09', '2018-04-10 16:07:09');
+
+-- ----------------------------
+-- Table structure for `room_user`
+-- ----------------------------
+DROP TABLE IF EXISTS `room_user`;
+CREATE TABLE `room_user` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `room_id` int(10) unsigned NOT NULL,
+  `user_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `112` (`room_id`),
+  KEY `113` (`user_id`),
+  CONSTRAINT `112` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`),
+  CONSTRAINT `113` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of room_user
+-- ----------------------------
+INSERT INTO `room_user` VALUES ('15', '6', '4');
+INSERT INTO `room_user` VALUES ('16', '5', '4');
 
 -- ----------------------------
 -- Table structure for `users`
