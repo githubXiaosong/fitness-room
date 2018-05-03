@@ -8,7 +8,7 @@
             <div class="page-header">
                 <h3 style="padding-left: 20px">{{ $room->title }}
                     <small> {{ $room->location }} </small>
-                    <small> 人数{{ $room->location }} </small>
+
                 </h3>
             </div>
 
